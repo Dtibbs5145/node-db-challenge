@@ -4,7 +4,7 @@ exports.up = function(knex) {
       pros.increments();
       pros.string('name', 130).notNullable();
       pros.string('description', 500);
-      pros.boolean('completed').defaultTo(false);
+      pros.boolean('completed').defaultTo(false).notNullable();
   }).createTable('resources', res => {
       res.increments();
       res.string('name', 130).notNullable();
