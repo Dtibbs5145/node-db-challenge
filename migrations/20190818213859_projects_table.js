@@ -13,7 +13,15 @@ exports.up = function(knex) {
       tasks.increments();
       tasks.string('description', 500).notNullable();
       tasks.string('notes');
-      tasks.boolean('completed').defaultTo(false);
+      tasks.boolean('completed').defaultTo(false)
+      tasks
+        .integer('projects_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('projects')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
   })
 };
 

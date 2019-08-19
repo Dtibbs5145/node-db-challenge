@@ -4,7 +4,7 @@
   "description": "In this challenge, you design and build a Data Model and a RESTful API that stores data into a Relational Database.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Dtibbs5145/node-db-challenge#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "helmet": "^3.20.0",
     "knex": "^0.19.2",
     "sqlite3": "^4.1.0"
   },

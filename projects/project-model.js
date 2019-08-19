@@ -17,11 +17,14 @@ function getRes() {
 }
 
 function getPros() {
-    return db('projects');
+    return db('projects');   
 }
 
 function getTasks() {
-    return db('tasks');
+    return db('tasks')
+        .innerJoin('projects', 'tasks.projects_id', '=', 'projects.id')
+        .select('tasks.id', 'projects.name', 'projects.description')
+        .where({ projects_id: id });
 }
 
 function getRById(id) {
