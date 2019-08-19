@@ -7,13 +7,13 @@ exports.up = function(knex) {
       pros.boolean('completed').defaultTo(false).notNullable();
   }).createTable('resources', res => {
       res.increments();
-      res.string('name', 130).notNullable();
+      res.string('name', 130).unique().notNullable();
       res.string('description', 500);
   }).createTable('tasks', tasks => {
       tasks.increments();
       tasks.string('description', 500).notNullable();
       tasks.string('notes');
-      tasks.boolean('completed').defaultTo(false)
+      tasks.boolean('completed').defaultTo(false).notNullable();
       tasks
         .integer('projects_id')
         .unsigned()
@@ -27,7 +27,7 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists('pros')
-    .dropTableIfExists('res')
+    .dropTableIfExists('projects')
+    .dropTableIfExists('resources')
     .dropTableIfExists('tasks');
 };

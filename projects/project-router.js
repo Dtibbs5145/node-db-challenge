@@ -28,9 +28,9 @@ router.get('/projects', async (req, res) => {
     }
 });
 
-router.get('/tasks', async (req, res) => {
+router.get('/:id/tasks', async (req, res) => {
     try {
-        const tasks = await db.getTasks();
+        const tasks = await db.getTasks(req.params.id);
         for (var i = 0; i < tasks.length; i++) {
             if (tasks[i].completed === 0) {
                 tasks[i].completed = false;
@@ -41,7 +41,7 @@ router.get('/tasks', async (req, res) => {
         res.status(200).json(tasks);
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: 'Could not get tasks' });
+        res.status(500).json({ message: 'Could not get task' });
     }
 });
 

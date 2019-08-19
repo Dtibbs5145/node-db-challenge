@@ -20,11 +20,11 @@ function getPros() {
     return db('projects');   
 }
 
-function getTasks() {
+function getTasks(id) {
     return db('tasks')
-        // .innerJoin('projects', 'tasks.projects_id', '=', 'projects.id')
-        // .select('tasks.id', 'projects.name', 'projects.description')
-        // .where({ projects_id: id });
+    .innerJoin('projects', 'tasks.projects_id', '=', 'projects.id')
+    .select('tasks.id', 'projects.name', 'projects.description')
+    .where({ projects_id: id });
 }
 
 function getRById(id) {
@@ -57,7 +57,7 @@ function insertPros(projects) {
     return db('projects')
         .insert(projects)
         .then(id => {
-            return getRById(id[0]);
+            return getPById(id[0]);
         });
 }
 
@@ -65,6 +65,6 @@ function insertTasks(tasks) {
     return db('tasks')
         .insert(tasks)
         .then(id => {
-            return getRById(id[0]);
+            return getTById(id[0]);
         });
 }
